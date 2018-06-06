@@ -2,6 +2,7 @@ package org.ssy.api.v4.branches;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -42,8 +43,29 @@ public class ApiBranches {
     }
   }
 
+  /**
+   * GET /projects/:id/repository/branches/:branch
+   */
+  JsonObject getSingleRepositoryBranch(String projectId) {
+    String listProjectBranchesUrl = UrlConstant.buildListRepositoryBranch(projectId);
+    Request request = UrlConstant.createDefaultRequest(listProjectBranchesUrl);
+    //需要解析数据信息
+    try {
+      Response response = client.newCall(request).execute();
+      ResponseBody requestBody = response.body();
+      JsonObject jsonArray = gson.fromJson(requestBody.string(),
+          JsonObject.class);
+      return jsonArray;
+    } catch (Exception e) {
+      logger.error("listRepositoryBranches error:", e);
+      return null;
+    }
+  }
 
-  
+  /**
+   * PUT /projects/:id/repository/branches/:branch/protect
+   */
+
 
 
 
