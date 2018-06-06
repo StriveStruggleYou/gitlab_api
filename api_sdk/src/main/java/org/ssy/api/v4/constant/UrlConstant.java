@@ -7,7 +7,7 @@ import okhttp3.Request;
  */
 public class UrlConstant {
 
-  public static String url = "https://git.taovip.com";
+  public static String url = "";
 
   public static String api_version_path = "/api/v4/";
 
