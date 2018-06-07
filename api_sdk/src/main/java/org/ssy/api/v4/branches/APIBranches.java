@@ -15,8 +15,15 @@ import org.ssy.api.v4.constant.UrlConstant;
 
 /**
  * Created by manager on 2018/6/6.
+ * List repository branches
+ * Get single repository branch
+ * Protect repository branch
+ * Unprotect repository branch
+ * Create repository branch
+ * Delete repository branch
+ * Delete merged branches
  */
-public class ApiBranches {
+public class APIBranches {
 
   private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
