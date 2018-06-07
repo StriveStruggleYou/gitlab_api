@@ -84,5 +84,27 @@ public class ApiBranches {
     }
   }
 
+  /**
+   * PUT /projects/:id/repository/branches/:branch/unprotect
+   */
+  JsonObject unprotectProjectBranch(String projectId, String branchName, Boolean devPush,
+      Boolean devMerge) {
+    String listProjectBranchesUrl = UrlConstant.buildListRepositoryBranch(projectId);
+    MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+    RequestBody putBody = RequestBody.create(mediaType, "");
+    Request request = UrlConstant.createPutBodyRequest(listProjectBranchesUrl, putBody);
+    try {
+      Response response = client.newCall(request).execute();
+      ResponseBody requestBody = response.body();
+      JsonObject jsonObject = gson.fromJson(requestBody.string(),
+          JsonObject.class);
+      return jsonObject;
+    } catch (Exception e) {
+      logger.error("acceptMergeRequest error:", e);
+      return null;
+    }
+
+
+  }
 
 }
