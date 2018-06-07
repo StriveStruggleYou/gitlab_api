@@ -110,7 +110,7 @@ public class ApiBranches {
    */
   JsonObject createRepositoryranch(String projectId, String branchName, String refBranch) {
     String listProjectBranchesUrl = UrlConstant.buildListRepositoryBranch(projectId);
-    //bulid content 
+    //bulid content
     MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
     RequestBody postBody = RequestBody.create(mediaType, "");
     Request request = UrlConstant.createPostBodyRequest(listProjectBranchesUrl, postBody);
@@ -126,5 +126,46 @@ public class ApiBranches {
     }
   }
 
+  /**
+   * DELETE /projects/:id/repository/branches/:branch
+   */
+  JsonObject deleteRepositoryBranch(String projectId, String branchName) {
+    String listProjectBranchesUrl = UrlConstant.buildListRepositoryBranch(projectId);
+    //bulid content
+    MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+    RequestBody postBody = RequestBody.create(mediaType, "");
+    Request request = UrlConstant.createDeleteRequest(listProjectBranchesUrl, postBody);
+    try {
+      Response response = client.newCall(request).execute();
+      ResponseBody requestBody = response.body();
+      JsonObject jsonObject = gson.fromJson(requestBody.string(),
+          JsonObject.class);
+      return jsonObject;
+    } catch (Exception e) {
+      logger.error("acceptMergeRequest error:", e);
+      return null;
+    }
+  }
+
+  /**
+   * DELETE /projects/:id/repository/merged_branches
+   */
+  JsonObject deleteMergedBranches(String projectId, String mergeBranchName) {
+    String listProjectBranchesUrl = UrlConstant.buildListRepositoryBranch(projectId);
+    //bulid content
+    MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+    RequestBody postBody = RequestBody.create(mediaType, "");
+    Request request = UrlConstant.createDeleteRequest(listProjectBranchesUrl, postBody);
+    try {
+      Response response = client.newCall(request).execute();
+      ResponseBody requestBody = response.body();
+      JsonObject jsonObject = gson.fromJson(requestBody.string(),
+          JsonObject.class);
+      return jsonObject;
+    } catch (Exception e) {
+      logger.error("acceptMergeRequest error:", e);
+      return null;
+    }
+  }
 
 }
