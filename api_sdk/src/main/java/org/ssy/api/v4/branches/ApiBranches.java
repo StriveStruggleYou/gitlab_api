@@ -103,8 +103,28 @@ public class ApiBranches {
       logger.error("acceptMergeRequest error:", e);
       return null;
     }
-
-
   }
+
+  /**
+   * POST /projects/:id/repository/branches
+   */
+  JsonObject createRepositoryranch(String projectId, String branchName, String refBranch) {
+    String listProjectBranchesUrl = UrlConstant.buildListRepositoryBranch(projectId);
+    //bulid content 
+    MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+    RequestBody postBody = RequestBody.create(mediaType, "");
+    Request request = UrlConstant.createPostBodyRequest(listProjectBranchesUrl, postBody);
+    try {
+      Response response = client.newCall(request).execute();
+      ResponseBody requestBody = response.body();
+      JsonObject jsonObject = gson.fromJson(requestBody.string(),
+          JsonObject.class);
+      return jsonObject;
+    } catch (Exception e) {
+      logger.error("acceptMergeRequest error:", e);
+      return null;
+    }
+  }
+
 
 }

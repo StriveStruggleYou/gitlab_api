@@ -51,6 +51,16 @@ public class UrlConstant {
         .build();
   }
 
+  public static Request createPostBodyRequest(String url, RequestBody postBody) {
+    return new Request.Builder()
+        .url(url)
+        .addHeader("private-token", "5m3wG8_unUWUA9X84Kqm")
+        .addHeader("content-type", "application/x-www-form-urlencoded")
+        .addHeader("cache-control", "no-cache")
+        .post(postBody)
+        .build();
+  }
+
 
   public static String createProtectContent(Boolean devPush, Boolean devMerge) {
     StringBuffer sb = new StringBuffer();
