@@ -10,6 +10,7 @@ public class UrlConstant {
 
   public static String url = "";
 
+  //api版本路劲
   public static String api_version_path = "/api/v4/";
 
   public static String repository_branch = "/repository/branches";
