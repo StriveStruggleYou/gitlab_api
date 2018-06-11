@@ -13,10 +13,10 @@ use java create gitlab http api request
 
 分支自动合并流程：
 
-1.对比两个分支的区别
+1.对比两个分支的区别（GET /projects/:id/repository/compare eg:GET/projects/:id/repository/compare?from=master&to=feature）
 
 2.如果分支有差异（diffs 字段数据为空）
 
-3.创建合并请求
+3.创建合并请求(POST /projects/:id/merge_requests)
 
-4.接受合并请求（有分支冲突的报错，有没有更新的报错）
+4.接受合并请求（有分支冲突的报错，有没有更新的报错）(PUT /projects/:id/merge_requests/:merge_request_iid/merge)
