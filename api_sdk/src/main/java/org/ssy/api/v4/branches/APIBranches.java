@@ -36,7 +36,7 @@ public class APIBranches {
    */
   JsonArray listRepositoryBranches(String projectId) {
     String listProjectBranchesUrl = UrlConstant.buildListRepositoryBranch(projectId);
-    Request request = UrlConstant.createDefaultRequest(listProjectBranchesUrl);
+    Request request = UrlConstant.createGetRequest(listProjectBranchesUrl);
     //需要解析数据信息
     try {
       Response response = client.newCall(request).execute();
@@ -55,7 +55,7 @@ public class APIBranches {
    */
   JsonObject getSingleRepositoryBranch(String projectId) {
     String listProjectBranchesUrl = UrlConstant.buildListRepositoryBranch(projectId);
-    Request request = UrlConstant.createDefaultRequest(listProjectBranchesUrl);
+    Request request = UrlConstant.createGetRequest(listProjectBranchesUrl);
     //需要解析数据信息
     try {
       Response response = client.newCall(request).execute();
@@ -171,6 +171,22 @@ public class APIBranches {
       return jsonObject;
     } catch (Exception e) {
       logger.error("acceptMergeRequest error:", e);
+      return null;
+    }
+  }
+
+  public JsonArray listBranchess(String projectId) {
+    String listBranchessUrl = UrlConstant.buildListRepositoryBranch(projectId);
+    Request request = UrlConstant.createGetRequest(listBranchessUrl);
+//需要解析数据信息
+    try {
+      Response response = client.newCall(request).execute();
+      ResponseBody requestBody = response.body();
+      JsonArray jsonArray = gson.fromJson(requestBody.string(),
+          JsonArray.class);
+      return jsonArray;
+    } catch (Exception e) {
+      logger.error("listRepositoryBranches error:", e);
       return null;
     }
   }
