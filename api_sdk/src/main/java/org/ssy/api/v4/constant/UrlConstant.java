@@ -31,7 +31,7 @@ public class UrlConstant {
     return sb.toString();
   }
 
-  public static Request createDefaultRequest(String url) {
+  public static Request createGetRequest(String url) {
     return new Request.Builder()
         .url(url)
         .addHeader("private-token", "5m3wG8_unUWUA9X84Kqm")
