@@ -15,4 +15,6 @@ use java create gitlab http api request
 
 1.对比两个分支的区别
 
-2.如果分支有差异（）
+2.如果分支有差异（diffs 字段数据为空）
+
+3.
