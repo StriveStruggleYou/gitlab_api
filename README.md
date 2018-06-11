@@ -17,4 +17,6 @@ use java create gitlab http api request
 
 2.如果分支有差异（diffs 字段数据为空）
 
-3.
+3.创建合并请求
+
+4.接受合并请求（有分支冲突的报错，有没有更新的报错）
